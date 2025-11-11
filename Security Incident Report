@@ -1,0 +1,46 @@
+Security Incident Report
+Section 1: Identify the Network Protocols Involved
+
+| Protocol                               | Purpose in Incident          | Details                                                                                                                                                |
+| -------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **DNS (Domain Name System)**           | Domain-to-IP resolution      | The browser queried DNS servers to resolve the domain names `yummyrecipesforme.com` and `greatrecipesforme.com` into their corresponding IP addresses. |
+| **HTTP (Hypertext Transfer Protocol)** | Webpage and malware download | The browser requested the webpage content over HTTP and later downloaded a malicious executable.                                                       |
+
+
+Section 2: Incident Documentation
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+A user visited the website yummyrecipesforme.com. The browser initiated a DNS lookup for the domain, received a valid IP, and then issued an HTTP request to load the webpage. Unknown to the user, the website had been compromised, and malicious JavaScript had been injected into its source code.
+
+This script prompted the user’s browser to download a malicious executable file.
+Once downloaded and executed, the malware issued a new DNS request for the domain greatrecipesforme.com and then redirected the user's browser to that domain via an HTTP request.
+
+A senior analyst confirmed that the original website was modified by attackers. The malicious JavaScript injected into the site caused both the malware download and the subsequent redirect behavior.
+
+Impact:
+
+Users who visit the compromised site risk executing malware.
+
+Malware may redirect traffic to attacker-controlled domains.
+
+Further exploitation or credential theft may occur.
+
+
+Section 3: Recommended Remediation for Brute Force Attacks
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+To reduce the risk of brute force attacks, implement Account Lockout Policy on authentication systems.
+
+Recommendation:
+Enable automatic account lockout after a set number of failed login attempts.
+| Control                    | Description                                                                   | Benefit                                                                                           |
+| -------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Account Lockout Policy** | Lock a user account for a defined period after multiple failed login attempts | Prevents attackers from continuously guessing passwords, slowing or blocking brute force attempts |
+
+
+Example Policy Setting:
+
+1) Lock account after 5 failed login attempts
+
+2) Lockout duration: 15 minutes
+
+3) Reset counter after 15 minutes
